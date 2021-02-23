@@ -11,7 +11,7 @@
         
         <div class="row mt-5">
             <div class="col-12 border-bottom mb-5 d-flex justify-content-between align-items-center">
-                <h2>{{name}}</h2>
+                <h2>contatos</h2>
                 <p>20 contatos</p>
             </div>
 
@@ -21,22 +21,22 @@
 
                     <div class="form-group mr-1">
                         <label>Nome</label>
-                        <input type="text" class="form-control" placeholder="Nome Completo..." v-bind:value="contact.name">
+                        <input type="text" class="form-control" placeholder="Nome Completo..." v-model="contact.name">
                     </div>
 
 
                     <div class="form-group mr-1">
                         <label>E-mail</label>
-                        <input type="email" class="form-control" placeholder="Seu melhor email..." v-bind:value="contact.email">
+                        <input type="email" class="form-control" placeholder="Seu melhor email..." v-model="contact.email">
                     </div>
 
                     <div class="form-group mr-1">
                         <label>Contato</label>
-                        <input type="phone" class="form-control" placeholder="Telefone/Celular" v-bind:value="contact.phone">
+                        <input type="phone" class="form-control" placeholder="Telefone/Celular" v-model="contact.phone">
                     </div>
 
                     <div class="form-group ml-1">
-                        <button  class="btn btn-lg btn-rounded btn-success" >Criar Contato</button>
+                        <button  class="btn btn-lg btn-rounded btn-success" v-on:click.prevent="saveContact(contact)">Criar Contato</button>
                         <button  class="btn btn-lg btn-rounded btn-primary" >Atualizar Contato</button>
                     </div>
                 </form>
@@ -77,8 +77,21 @@
                 name: '',
                 email: '',
                 phone: ''
+            }   
+        },
+        methods: {
+            saveContact(contact){
+                let contacts = localStorage.getItem('contactsApp');
+
+                if(contacts){
+
+                }else{
+                    contacts = [contact];
+                }
+
+                localStorage.setItem('contactsAp', JSON.stringify(contacts))
             }
-        }
+        } 
         })
     </script>
 </body> 
